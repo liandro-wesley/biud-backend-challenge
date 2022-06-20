@@ -1,19 +1,19 @@
-require('dotenv').config({
-  path: process.env.NODE_ENV === "development" ? ".env.local" : ".env"
+import dotenv from 'dotenv';
+import Debug from '../src/helpers/debug';
+
+const { log } = new Debug();
+
+dotenv.config({
+  path: process.env.NODE_ENV === 'development' ? '.env.local' : '.env'
 });
 
-const app = require('../src/app');
-const http = require('http');
+import app from '../src/app';
 
-const port =  process.env.PORT;
+const port = process.env.PORT;
 
 app.set('port', port);
 
-const server = http.createServer(app);
-
 app.on('ready', () => {
-  server.listen(port);
-  console.log('API started successfully. listening at the port ' + port)
-})
-
-
+  app.listen(port);
+  log('API started successfully. listening at the port ' + port);
+});

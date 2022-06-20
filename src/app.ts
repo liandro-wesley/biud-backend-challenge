@@ -1,47 +1,65 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const DBConnect = require('./services/mongodb-connect-service');
-const helmet = require('helmet');
+import express from 'express';
+import bodyParser from 'body-parser';
+import DBConnect from './services/mongodb-connect-service';
+import cors from 'cors';
+import helmet from 'helmet';
 
-const app = express();
-const router = express.Router();
+// Routes Import
+import indexRoute from './routes/index-route';
 
-// MongoDB Connect
-const mongodb = new DBConnect(app);
-mongodb.connect();
+class App {
+  public express: express.Application;
 
-if(process.env.NODE_ENV === 'production') {
-  app.use(helmet());
+  constructor() {
+    this.express = express();
+
+    this.security();
+    this.database();
+    this.middlewares();
+    this.routes();
+  }
+
+  private middlewares(): void {
+    this.express.use(
+      bodyParser.json({
+        limit: '5mb'
+      })
+    );
+    this.express.use(
+      bodyParser.urlencoded({
+        extended: false,
+        limit: '5mb'
+      })
+    );
+    this.express.use(
+      cors({
+        origin: '*',
+        allowedHeaders: [
+          'Origin',
+          'X-Requested-With',
+          'Content-Type',
+          'Accept',
+          'x-access-token'
+        ],
+        methods: 'GET POST PUT DELETE'
+      })
+    );
+  }
+
+  private database(): void {
+    const mongodb = new DBConnect(this.express);
+    mongodb.connect();
+  }
+
+  private security(): void {
+    if (process.env.NODE_ENV === 'production') {
+      this.express.use(helmet());
+    }
+  }
+
+  private routes(): void {
+    this.express.use('/', indexRoute);
+  }
 }
-app.use(
-  bodyParser.json({
-    limit: "5mb",
-  })
-);
-app.use(
-  bodyParser.urlencoded({
-    extended: false,
-    limit: "5mb",
-  })
-);
 
-
-
-// CORS Startup
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, x-access-token"
-  );
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-  next();
-});
-
-
-// Routes Startup
-const indexRoute = require('./routes/index-route');
-
-app.use('/', indexRoute);
-
-module.exports = app;
+export default new App().express;
