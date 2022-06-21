@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import delegateFormatError from '../helpers/delegate-format-error';
 import Contract from '../validators';
 
-export const validateBodyParams = async (
+export const userSignupValidateRequestMiddleware = async (
   req: Request,
   res: Response,
   next: NextFunction
