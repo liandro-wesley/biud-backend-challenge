@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import Debug from '../src/helpers/debug';
 
-const { log } = new Debug();
+Debug.init();
 
 dotenv.config({
   path: process.env.NODE_ENV === 'development' ? '.env.local' : '.env'
@@ -15,5 +15,5 @@ app.set('port', port);
 
 app.on('ready', () => {
   app.listen(port);
-  log('API started successfully. listening at the port ' + port);
+  global.log('API started successfully. listening at the port ' + port);
 });

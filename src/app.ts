@@ -6,6 +6,7 @@ import helmet from 'helmet';
 
 // Routes Import
 import indexRoute from './routes/index-route';
+import userRoute from './routes/user-routes';
 
 class App {
   public express: express.Application;
@@ -59,6 +60,7 @@ class App {
 
   private routes(): void {
     this.express.use('/', indexRoute);
+    this.express.use('/user', userRoute);
   }
 }
 

@@ -21,6 +21,12 @@ class Debug {
   formatView(value) {
     console.log(JSON.stringify(value, null, 2));
   }
+
+  init() {
+    global.log = (value) => this.log(value);
+    global.error = (value) => this.error(value);
+    global.formatView = (value) => this.formatView(value);
+  }
 }
 
-export default Debug;
+export default new Debug();
