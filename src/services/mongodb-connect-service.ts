@@ -9,7 +9,7 @@ class DBConnect {
 
   async connect() {
     try {
-      await _connect(process.env.MONGOOSE_CONECTION_STRING);
+      await _connect(`${process.env.MONGOOSE_CONECTION_STRING}`);
       global.log('Success connecting to the database...');
       return this.app.emit('ready');
     } catch (err) {

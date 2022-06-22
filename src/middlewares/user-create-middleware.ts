@@ -1,5 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import delegateFormatError from '../helpers/delegate-format-error';
+import { getByEmail } from '../repositories/user-repository';
+
 import Contract from '../validators';
 
 export const userSignupValidateRequestMiddleware = async (
@@ -42,6 +44,18 @@ export const userSignupValidateRequestMiddleware = async (
     Contract.clearErrors();
     return;
   } else {
+    const hasUser = await getByEmail(req.body.email);
+
+    if (hasUser) {
+      res
+        .status(400)
+        .send({
+          message: 'Usuário já cadastrado!'
+        })
+        .end();
+      return;
+    }
+
     next();
   }
 };

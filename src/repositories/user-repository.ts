@@ -8,8 +8,15 @@ export const create = async (data: UserInterface) => {
   await user.save();
 };
 
-export const getById = async (data) => {
-  const res = await User.findById(data.id);
+export const getById = async (id) => {
+  const res = await User.findById(id);
+  return res;
+};
+
+export const getByEmail = async (email) => {
+  const res = await User.findOne({
+    email
+  });
   return res;
 };
 
