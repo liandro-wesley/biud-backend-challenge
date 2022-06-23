@@ -2,6 +2,6 @@
   "watch": ["src"],
   "ext": "ts",
   "execMap": {
-    "ts": "NODE_ENV=development sucrase-node ./bin/server.ts"
+    "ts": "NODE_ENV=development sucrase-node ./src/server.ts"
   }
 }

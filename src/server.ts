@@ -1,13 +1,15 @@
 import dotenv from 'dotenv';
-import Debug from '../src/helpers/debug';
+import Debug from './helpers/debug';
 
 Debug.init();
 
-dotenv.config({
-  path: process.env.NODE_ENV === 'development' ? '.env.local' : '.env'
-});
+if (process.env.NODE_ENV !== 'production') {
+  dotenv.config({
+    path: '.env.local'
+  });
+}
 
-import app from '../src/app';
+import app from './app';
 
 const port = process.env.PORT;
 
