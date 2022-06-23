@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=development nodemon ./bin/server.ts",
-    "build": "NODE_ENV=development sucrase ./src -d ./dist --transforms typescript,imports"
+    "build": "NODE_ENV=production sucrase ./src -d ./dist --transforms typescript,imports"
   },
   "keywords": [],
   "author": "Liandro Silva <liandro.silva1012@gmail.com>",
