@@ -11,7 +11,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 import app from './app';
 
-const port = process.env.PORT;
+const port = process.env.PORT || 3333;
 
 app.set('port', port);
 
