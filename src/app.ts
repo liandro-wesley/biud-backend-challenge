@@ -8,6 +8,7 @@ import helmet from 'helmet';
 import indexRoute from './routes/index-route';
 import userRoute from './routes/user-routes';
 import categoryRoute from './routes/category-routes';
+import articleRoute from './routes/article-routes';
 
 class App {
   public express: express.Application;
@@ -63,6 +64,7 @@ class App {
     this.express.use('/', indexRoute);
     this.express.use('/user', userRoute);
     this.express.use('/category', categoryRoute);
+    this.express.use('/article', articleRoute);
   }
 }
 
