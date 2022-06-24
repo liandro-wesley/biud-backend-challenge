@@ -5,8 +5,7 @@ export interface ArticleModel extends Document, ArticleInterface {}
 
 const ArticleSchema = new Schema({
   author: {
-    type: Schema.Types.ObjectId,
-    ref: 'User'
+    type: String
   },
   title: {
     type: String,

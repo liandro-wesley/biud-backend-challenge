@@ -10,7 +10,9 @@
     "**/CVS": true,
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
-    "node_modules":true,
-    "yarn.lock":true,
-  }
+    "node_modules": true,
+    "yarn.lock": true
+  },
+  "appService.defaultWebAppToDeploy": "/subscriptions/cea8fd8b-4736-4578-9f1b-ff0bbe80160e/microsoft.web/sites/subscriptions/cea8fd8b-4736-4578-9f1b-ff0bbe80160e/resourceGroups/biud-challenge/providers/Microsoft.Web/sites/biudbackapi",
+  "appService.deploySubpath": "."
 }

@@ -2,11 +2,11 @@
   "name": "biud-challenge-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./dist/server.js",
   "scripts": {
-    "start": "NODE_ENV=development nodemon ./src/server.ts",
+    "start:dev": "NODE_ENV=development nodemon ./src/server.ts",
     "build": "sucrase ./src -d ./dist --transforms typescript,imports",
-    "start:prod": "pm2 start ./dist/server.js --name biud-backend-challenge-api"
+    "start": "npm run build && node server.js"
   },
   "keywords": [],
   "author": "Liandro Silva <liandro.silva1012@gmail.com>",

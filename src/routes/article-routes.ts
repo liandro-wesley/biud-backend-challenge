@@ -9,7 +9,7 @@ import {
 import AuthService from '../services/auth-service';
 const router = Router();
 
-router.get('/', AuthService.authorize, getAllArticles);
+router.get('/', getAllArticles);
 router.get('/details/:slug', AuthService.authorize, getArticleDetails);
 router.post('/', AuthService.authorize, createNewArticle);
 router.put('/:id', AuthService.authorize, updateArticle);

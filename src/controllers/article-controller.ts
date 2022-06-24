@@ -10,6 +10,7 @@ import {
 export const getAllArticles = async (req: Request, res: Response) => {
   try {
     const data = await getAll();
+
     res.status(200).send(data);
   } catch (err) {
     res.status(500).send({
