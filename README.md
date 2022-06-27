@@ -20,7 +20,7 @@ npm install
 você deve criar um arquivo chamado ```.env.local``` na raíz de seu projeto e adicionar as seguintes variáveis de ambiente:
 
 - SALT_KEY: Um valor qualquer aleatório
-- MONGOOSE_CONECTION_STRING: A connection string para conexão no Mongo DB, você pode usar o [Mongo DB Atlas para criar um BD em Mongo](mlab.com)
+- MONGOOSE_CONECTION_STRING: A connection string para conexão no Mongo DB, você pode usar o [Mongo DB Atlas para criar um BD em Mongo](https://mlab.com)
 
 ### Agora, para iniciar o projeto execute:
 
