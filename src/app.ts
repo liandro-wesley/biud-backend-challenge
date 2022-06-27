@@ -34,19 +34,7 @@ class App {
         limit: '5mb'
       })
     );
-    this.express.use(
-      cors({
-        origin: '*',
-        allowedHeaders: [
-          'Origin',
-          'X-Requested-With',
-          'Content-Type',
-          'Accept',
-          'x-access-token'
-        ],
-        methods: 'GET POST PUT DELETE'
-      })
-    );
+    this.express.use(cors());
   }
 
   private database(): void {

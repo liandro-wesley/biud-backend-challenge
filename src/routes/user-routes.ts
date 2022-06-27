@@ -1,7 +1,12 @@
 import { userSigninValidateRequestMiddleware } from './../middlewares/user-signin-middleware';
 import { userSignupValidateRequestMiddleware } from './../middlewares/user-create-middleware';
 import { Router } from 'express';
-import { signup, signin, reSignin } from '../controllers/user-controller';
+import {
+  signup,
+  signin,
+  reSignin,
+  decode
+} from '../controllers/user-controller';
 import AuthService from '../services/auth-service';
 
 const router = Router();
@@ -17,5 +22,6 @@ router.post(
   signin
 );
 router.post('/authenticate/re-signin', AuthService.authorize, reSignin);
+router.post('/authenticate/decode', decode);
 
 export default router;

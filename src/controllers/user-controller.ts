@@ -30,9 +30,12 @@ export const signin = async (req: Request, res: Response) => {
     });
 
     if (!user) {
-      res.status(404).send({
-        message: 'Usuário ou senha inválidos'
-      });
+      res
+        .status(404)
+        .send({
+          message: 'Usuário ou senha inválidos'
+        })
+        .end();
       return;
     }
 
@@ -46,6 +49,17 @@ export const signin = async (req: Request, res: Response) => {
       token
     });
   } catch (err) {
+    res.status(500).send({
+      message: 'Falha ao processar sua requisição'
+    });
+  }
+};
+
+export const decode = async (req: Request, res: Response) => {
+  try {
+    const data = await AuthService.decodeToken(req.body.token);
+    res.status(200).send(data);
+  } catch (error) {
     res.status(500).send({
       message: 'Falha ao processar sua requisição'
     });

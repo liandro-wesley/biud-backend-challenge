@@ -5,7 +5,12 @@ export interface ArticleModel extends Document, ArticleInterface {}
 
 const ArticleSchema = new Schema({
   author: {
-    type: String
+    type: String,
+    required: true
+  },
+  authorId: {
+    type: String,
+    required: true
   },
   title: {
     type: String,

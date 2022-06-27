@@ -16,6 +16,16 @@ export const getBySlug = async (slug) => {
   return res;
 };
 
+export const getByAuthor = async (authorId) => {
+  const res = await Article.find(
+    {
+      authorId
+    },
+    'author authorId title slug description category'
+  );
+  return res;
+};
+
 export const create = async (data: ArticleInterface) => {
   const article = new Article(data);
   article.save();
@@ -25,6 +35,7 @@ export const uptate = async (id, data: ArticleInterface) => {
   await Article.findByIdAndUpdate(id, {
     $set: {
       author: data.author,
+      authorId: data.authorId,
       title: data.title,
       description: data.description,
       category: data.category,
